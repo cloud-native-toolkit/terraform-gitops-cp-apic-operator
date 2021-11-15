@@ -1,30 +1,28 @@
-name: ""
+name: gitops-cp-apic
 type: terraform
-description: ""
+description: Module to populate a gitops repository with the resources to provision the API Connect operator from IBM Cloud Pak for Integration.
 tags:
   - tools
   - gitops
+  - ibm
+  - cloud pak
+  - operator
+  - ace
 versions:
   - platforms:
-      - kubernetes
-      - ocp3
       - ocp4
     dependencies:
       - id: gitops
         refs:
           - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
             version: ">= 1.1.0"
-      - id: cluster
+      - id: catalogs
         refs:
-          - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
-            version: ">= 1.7.0"
-          - source: github.com/ibm-garage-cloud/terraform-ibm-ocp-vpc
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
             version: ">= 1.0.0"
-          - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
-            version: ">= 2.0.0"
-      - id: namespace
+      - id: platform_navigator
         refs:
-          - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp-platform-navigator.git
             version: ">= 1.0.0"
     variables:
       - name: gitops_config
@@ -39,23 +37,11 @@ versions:
         moduleRef:
           id: gitops
           output: server_name
-      - name: cluster_type
+      - name: catalog
         moduleRef:
-          id: cluster
-          output: platform.type_code
-      - name: cluster_ingress_hostname
+          id: catalogs
+          output: catalog_ibmoperators
+      - name: platform_navigator_name
         moduleRef:
-          id: cluster
-          output: platform.ingress
-      - name: tls_secret_name
-        moduleRef:
-          id: cluster
-          output: platform.tls_secret
-      - name: namespace
-        moduleRef:
-          id: namespace
+          id: platform_navigator
           output: name
-      - name: kubeseal_cert
-        moduleRef:
-          id: gitops
-          output: sealed_secrets_cert

@@ -1,15 +1,28 @@
 locals {
-  name          = "my-module"
+  name          = "ibm-apic-operator"
   bin_dir       = module.setup_clis.bin_dir
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
-  ingress_host  = "${local.name}-${var.namespace}.${var.cluster_ingress_hostname}"
-  ingress_url   = "https://${local.ingress_host}"
-  service_url   = "http://${local.name}.${var.namespace}"
-  values_content = {
-  }
   layer = "services"
+  type  = "operators"
   application_branch = "main"
   layer_config = var.gitops_config[local.layer]
+    values_content = {
+      "ibm-apic-operator" = {
+        subscriptions = {
+          apic = {
+            name = "ibm-apic"
+            subscription = {
+              channel = var.channel
+              installPlanApproval = "Automatic"
+              name = "ibm-apic"
+              source = var.catalog
+              sourceNamespace = var.catalog_namespace
+            }
+          }
+        }
+      }
+  }
+  values_file = "values-${var.server_name}.yaml"
 }
 
 module setup_clis {
@@ -18,7 +31,7 @@ module setup_clis {
 
 resource null_resource create_yaml {
   provisioner "local-exec" {
-    command = "${path.module}/scripts/create-yaml.sh '${local.name}' '${local.yaml_dir}'"
+    command = "${path.module}/scripts/create-yaml.sh '${local.name}' '${local.yaml_dir}' '${local.values_file}'"
 
     environment = {
       VALUES_CONTENT = yamlencode(local.values_content)
@@ -30,7 +43,7 @@ resource null_resource setup_gitops {
   depends_on = [null_resource.create_yaml]
 
   provisioner "local-exec" {
-    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}' --debug"
+    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' --valueFiles='values.yaml,${local.values_file}' -l '${local.layer}' --type ${local.type}"
 
     environment = {
       GIT_CREDENTIALS = yamlencode(var.git_credentials)
