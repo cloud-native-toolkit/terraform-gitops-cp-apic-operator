@@ -7,7 +7,7 @@ export KUBECONFIG=$(cat .kubeconfig)
 NAMESPACE="openshift-operators"
 BRANCH="main"
 SERVER_NAME="default"
-TYPE="base"
+TYPE="operators"
 LAYER="2-services"
 
 COMPONENT_NAME="ibm-apic-operator"
