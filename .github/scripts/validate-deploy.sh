@@ -10,7 +10,7 @@ SERVER_NAME="default"
 TYPE="base"
 LAYER="2-services"
 
-COMPONENT_NAME="my-module"
+COMPONENT_NAME="ibm-apic-operator"
 
 mkdir -p .testrepo
 
