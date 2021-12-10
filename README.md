@@ -8,7 +8,7 @@ The module depends on the following software components:
 
 ### Command-line tools
 
-- terraform - v14
+- terraform - v15
 
 ### Terraform providers
 
@@ -25,8 +25,8 @@ This module makes use of the output from other modules:
 ## Example usage
 
 ```hcl-terraform
-module "mq" {
-  source = "github.com/cloud-native-toolkit/terraform-gitops-cp-app-connect.git"
+module "apic" {
+  source = "github.com/cloud-native-toolkit/terraform-gitops-cp-apic.git"
 
   gitops_config = module.gitops.gitops_config
   git_credentials = module.gitops.git_credentials
