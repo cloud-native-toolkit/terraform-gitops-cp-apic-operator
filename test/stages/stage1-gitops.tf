@@ -7,6 +7,7 @@ module "gitops" {
   repo = var.git_repo
   token = var.git_token
   username = var.git_username
+  public = true
   gitops_namespace = var.gitops_namespace
 }
 
