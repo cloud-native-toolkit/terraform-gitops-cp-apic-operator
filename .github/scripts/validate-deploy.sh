@@ -35,7 +35,7 @@ if [[ ! -f "payload/${LAYER}/namespace/${NAMESPACE}/${COMPONENT_NAME}/values.yam
 fi
 
 echo "Printing payload/${LAYER}/namespace/${NAMESPACE}/${COMPONENT_NAME}/values.yaml"
-cat "payload/${LAYER}namespace/${NAMESPACE}/${COMPONENT_NAME}/values.yaml"
+cat "payload/${LAYER}/namespace/${NAMESPACE}/${COMPONENT_NAME}/values.yaml"
 
 count=0
 until kubectl get namespace "${NAMESPACE}" 1> /dev/null 2> /dev/null || [[ $count -eq 20 ]]; do
@@ -55,7 +55,7 @@ fi
 cd ..
 rm -rf .testrepo
 
-SUBSCRIPTION="subscription/ibm-ace"
+SUBSCRIPTION="subscription/ibm-apic"
 count=0
 until kubectl get "${SUBSCRIPTION}" -n "${NAMESPACE}" || [[ $count -eq 20 ]]; do
   echo "Waiting for ${SUBSCRIPTION} in ${NAMESPACE}"
@@ -69,7 +69,7 @@ if [[ $count -eq 20 ]]; then
   exit 1
 fi
 
-CSV_NAME="ibm-appconnect"
+CSV_NAME="ibm-apic"
 
 count=0
 until kubectl get csv -n "${NAMESPACE}" -o json | "${BIN_DIR}/jq" -r '.items[] | .metadata.name' | grep -q "${CSV_NAME}" || [[ $count -eq 20 ]]; do
