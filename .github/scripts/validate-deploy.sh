@@ -69,7 +69,7 @@ if [[ $count -eq 20 ]]; then
   exit 1
 fi
 
-CSV_NAME="ibm-apic"
+CSV_NAME="ibm-apiconnect"
 
 count=0
 until kubectl get csv -n "${NAMESPACE}" -o json | "${BIN_DIR}/jq" -r '.items[] | .metadata.name' | grep -q "${CSV_NAME}" || [[ $count -eq 20 ]]; do
