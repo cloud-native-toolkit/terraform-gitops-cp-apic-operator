@@ -89,7 +89,7 @@ variable "catalog_namespace" {
 variable "channel" {
   type        = string
   description = "The channel that should be used to deploy the operator"
-  default     = "v1.6"
+  default     = "v2.4"
 }
 
 variable "platform_navigator_name" {
