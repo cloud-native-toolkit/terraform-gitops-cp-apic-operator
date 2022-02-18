@@ -1,5 +1,5 @@
-id: github.com/cloud-native-toolkit/terraform-gitops-cp-apic
-name: gitops-cp-apic
+id: github.com/cloud-native-toolkit/terraform-gitops-cp-apic-operator
+name: gitops-cp-apic-opearator
 type: terraform
 description: >-
   Module to populate a gitops repository with the resources to provision the API
