@@ -88,3 +88,15 @@ variable "kubeseal_namespace" {
 
 variable "cp_entitlement_key" {
 }
+
+variable "cluster_username" {
+  
+}
+
+variable "cluster_password" {
+  
+}
+
+variable "login_token" {
+  
+}
