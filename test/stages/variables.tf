@@ -102,4 +102,5 @@ variable "cluster_password" {
 
 variable "login_token" {
   type        = string
+  default = ""
 }
