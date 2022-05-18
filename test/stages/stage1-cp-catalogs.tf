@@ -7,3 +7,5 @@ module "cp_catalogs" {
   kubeseal_cert = module.gitops.sealed_secrets_cert
   entitlement_key = "test"
 }
+
+
