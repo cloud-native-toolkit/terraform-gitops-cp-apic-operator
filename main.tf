@@ -9,7 +9,7 @@ locals {
     values_content = {
       "ibm_apic_operator" = {
         subscriptions = {
-          apic = {
+          ibmapic = {
             name = "ibm-apic"
             subscription = {
               channel = var.channel
