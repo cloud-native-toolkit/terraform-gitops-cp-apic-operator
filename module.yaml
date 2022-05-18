@@ -45,10 +45,6 @@ versions:
         moduleRef:
           id: catalogs
           output: catalog_ibmoperators
-      - name: platform_navigator_name
-        moduleRef:
-          id: platform_navigator
-          output: name
       - name: channel
         moduleRef:
           id: dep-manager

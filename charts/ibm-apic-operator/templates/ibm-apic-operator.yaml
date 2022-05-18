@@ -1,0 +1,8 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: {{ .Values.subscriptions.apicoperator.name }}
+  #namespace: {{ .Values.namespace }}
+  annotations:
+spec:
+  {{- toYaml .Values.subscriptions.apicoperator.subscription | nindent 2 }}
