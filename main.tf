@@ -7,7 +7,7 @@ locals {
   application_branch = "main"
   layer_config = var.gitops_config[local.layer]
     values_content = {
-      "ibm-apic-operator" = {
+      "ibm_apic_operator" = {
         subscriptions = {
           apic = {
             name = "ibm-apic"

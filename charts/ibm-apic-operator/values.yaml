@@ -1,6 +1,6 @@
 global: {}
 
-ibm-apic-operator:
+ibm_apic_operator:
   subscriptions:
     ibmapic:
       name: ibm-apic
