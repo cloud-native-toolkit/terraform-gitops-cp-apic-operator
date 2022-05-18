@@ -99,9 +99,6 @@ variable "cluster_password" {
   description = "The password for AWS access"
 }
 
-variable "server_url" {
-  type        = string
-}
 
 variable "login_token" {
   type        = string
