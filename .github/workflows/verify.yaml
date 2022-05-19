@@ -9,10 +9,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   verify:
-    if: ${{ !contains( github.event.pull_request.labels.*.name, 'skip ci' ) }}
     uses: cloud-native-toolkit/action-workflows/.github/workflows/verify-gitops-module.yaml@v1
     with:
-      testcase: ocp4_latest_gitops
+      testcase: ocp4_latest_gitops #azure_latest_gitops
     secrets:
       GIT_ORG: ${{ secrets.GIT_ORG }}
       AWS_CLUSTER_USERNAME: ${{ secrets.AWS_CLUSTER_USERNAME }}
