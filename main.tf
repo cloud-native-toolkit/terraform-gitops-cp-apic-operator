@@ -10,11 +10,11 @@ locals {
       "ibm_apic_operator" = {
         subscriptions = {
           ibmapic = {
-            name = "ibm-apic"
+            name = "ibm-apiconnect"
             subscription = {
               channel = var.channel
               installPlanApproval = "Automatic"
-              name = "ibm-apic"
+              name = "ibm-apiconnect"
               source = var.catalog
               sourceNamespace = var.catalog_namespace
             }

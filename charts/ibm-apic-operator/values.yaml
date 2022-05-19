@@ -3,7 +3,7 @@ global: {}
 ibm_apic_operator:
   subscriptions:
     ibmapic:
-      name: ibm-apic
+      name: ibm-apiconnect
       subscription:
         channel: v2.5
         installPlanApproval: Automatic
