@@ -1,11 +1,11 @@
 global: {}
 
-ibm-apic-operator:
+ibm_apic_operator:
   subscriptions:
     ibmapic:
-      name: ibm-apic
+      name: ibm-apiconnect
       subscription:
-        channel: v2.4
+        channel: v2.5
         installPlanApproval: Automatic
         name: ibm-apiconnect
         source: ibm-operator-catalog
