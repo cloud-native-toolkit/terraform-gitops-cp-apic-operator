@@ -1,4 +1,4 @@
-name: gitops-cp-apic
+name: gitops-cp-apic-operator
 type: terraform
 description: Module to populate a gitops repository with the resources to provision the API Connect operator from IBM Cloud Pak for Integration.
 tags:

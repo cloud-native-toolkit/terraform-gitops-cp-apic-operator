@@ -2,7 +2,25 @@
 
 GIT_REPO=$(cat git_repo)
 GIT_TOKEN=$(cat git_token)
+
 BIN_DIR=$(cat .bin_dir)
+
+export PATH="${BIN_DIR}:${PATH}"
+
+if ! command -v oc 1> /dev/null 2> /dev/null; then
+  echo "oc cli not found" >&2
+  exit 1
+fi
+
+if ! command -v kubectl 1> /dev/null 2> /dev/null; then
+  echo "kubectl cli not found" >&2
+  exit 1
+fi
+
+if ! command -v jq 1> /dev/null 2> /dev/null; then
+  echo "jq cli not found" >&2
+  exit 1
+fi
 
 export KUBECONFIG=$(cat .kubeconfig)
 NAMESPACE="openshift-operators"
@@ -72,7 +90,7 @@ fi
 CSV_NAME="ibm-apiconnect"
 
 count=0
-until kubectl get csv -n "${NAMESPACE}" -o json | "${BIN_DIR}/jq" -r '.items[] | .metadata.name' | grep -q "${CSV_NAME}" || [[ $count -eq 20 ]]; do
+until kubectl get csv -n "${NAMESPACE}" -o json | jq -r '.items[] | .metadata.name' | grep -q "${CSV_NAME}" || [[ $count -eq 20 ]]; do
   echo "Waiting for ${CSV_NAME} csv in ${NAMESPACE}"
   count=$((count + 1))
   sleep 30
@@ -84,5 +102,5 @@ if [[ $count -eq 20 ]]; then
   exit 1
 fi
 
-CSV=$(kubectl get csv -n "${NAMESPACE}" -o json | "${BIN_DIR}/jq" -r '.items[] | .metadata.name' | grep "${CSV_NAME}")
+CSV=$(kubectl get csv -n "${NAMESPACE}" -o json | jq -r '.items[] | .metadata.name' | grep "${CSV_NAME}")
 echo "Found csv ${CSV} in ${NAMESPACE}"
