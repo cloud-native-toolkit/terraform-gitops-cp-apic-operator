@@ -7,14 +7,14 @@ locals {
   application_branch = "main"
   layer_config = var.gitops_config[local.layer]
     values_content = {
-      "ibm-apic-operator" = {
+      "ibm_apic_operator" = {
         subscriptions = {
-          apic = {
-            name = "ibm-apic"
+          ibmapic = {
+            name = "ibm-apiconnect"
             subscription = {
               channel = var.channel
               installPlanApproval = "Automatic"
-              name = "ibm-apic"
+              name = "ibm-apiconnect"
               source = var.catalog
               sourceNamespace = var.catalog_namespace
             }
@@ -22,7 +22,7 @@ locals {
         }
       }
   }
-  values_file = "values-${var.server_name}.yaml"
+  values_file = "values.yaml"
 }
 
 module setup_clis {

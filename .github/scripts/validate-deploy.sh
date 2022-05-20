@@ -59,7 +59,7 @@ count=0
 until kubectl get namespace "${NAMESPACE}" 1> /dev/null 2> /dev/null || [[ $count -eq 20 ]]; do
   echo "Waiting for namespace: ${NAMESPACE}"
   count=$((count + 1))
-  sleep 15
+  sleep 30
 done
 
 if [[ $count -eq 20 ]]; then
@@ -73,12 +73,12 @@ fi
 cd ..
 rm -rf .testrepo
 
-SUBSCRIPTION="subscription/ibm-apic"
+SUBSCRIPTION="subscription/ibm-apiconnect"
 count=0
 until kubectl get "${SUBSCRIPTION}" -n "${NAMESPACE}" || [[ $count -eq 20 ]]; do
   echo "Waiting for ${SUBSCRIPTION} in ${NAMESPACE}"
   count=$((count + 1))
-  sleep 15
+  sleep 60
 done
 
 if [[ $count -eq 20 ]]; then
@@ -93,7 +93,7 @@ count=0
 until kubectl get csv -n "${NAMESPACE}" -o json | jq -r '.items[] | .metadata.name' | grep -q "${CSV_NAME}" || [[ $count -eq 20 ]]; do
   echo "Waiting for ${CSV_NAME} csv in ${NAMESPACE}"
   count=$((count + 1))
-  sleep 15
+  sleep 30
 done
 
 if [[ $count -eq 20 ]]; then
