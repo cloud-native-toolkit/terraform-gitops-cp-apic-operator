@@ -20,10 +20,12 @@ versions:
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
             version: ">= 1.0.0"
-      - id: platform_navigator
-        refs:
-          - source: github.com/cloud-native-toolkit/terraform-gitops-cp-platform-navigator.git
-            version: ">= 1.0.0"
+      # Purposely I'm commenting to avoid creating a PlatformNavigator in the same namespace where ace-designer exist.
+      # We can not have more than one PlatformNavigator instance if we install all CP4i operator @Cluster Scope 
+      # - id: platform-navigator
+      #   refs:
+      #     - source: github.com/cloud-native-toolkit/terraform-gitops-cp-platform-navigator.git
+      #       version: '>= 1.0.2'
       - id: dep-manager
         refs:
           - source: github.com/cloud-native-toolkit/terraform-cp4i-dependency-management.git
@@ -45,10 +47,10 @@ versions:
         moduleRef:
           id: catalogs
           output: catalog_ibmoperators
-      - name: platform_navigator_name
-        moduleRef:
-          id: platform_navigator
-          output: name
+      # - name: platform_navigator_name
+      #   moduleRef:
+      #     id: platform_navigator
+      #     output: name
       - name: channel
         moduleRef:
           id: dep-manager

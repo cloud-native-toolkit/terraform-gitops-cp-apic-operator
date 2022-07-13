@@ -1,2 +1,9 @@
 .idea/
 *.iml
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+terraform.tfvars
+test/stages/bin2/
+test/stages/module
+test/stages/bin/

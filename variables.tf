@@ -92,8 +92,8 @@ variable "channel" {
   default     = "v2.4"
 }
 
-variable "platform_navigator_name" {
-  type        = string
-  description = "The name of the platform navigator instance"
-  default     = ""
-}
+# variable "platform_navigator_name" {
+#   type        = string
+#   description = "The name of the platform navigator instance"
+#   default     = ""
+# }
