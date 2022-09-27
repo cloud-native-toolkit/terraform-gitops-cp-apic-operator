@@ -46,7 +46,7 @@ resource gitops_module module {
   namespace = var.namespace
 
   #content_dir = local.operator_yaml_dir
-  yaml_dir = local.yaml_dir
+  #yaml_dir = local.yaml_dir
 
   server_name = var.server_name
 
