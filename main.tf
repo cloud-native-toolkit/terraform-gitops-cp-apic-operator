@@ -39,12 +39,8 @@ resource gitops_module setup_gitops {
 
   name = local.name
   namespace = var.namespace
-
-  #content_dir = local.operator_yaml_dir
-  #yaml_dir = local.yaml_dir
-
+  content_dir = local.yaml_dir
   server_name = var.server_name
-
   layer = local.layer
   type = local.type
   branch = local.application_branch
