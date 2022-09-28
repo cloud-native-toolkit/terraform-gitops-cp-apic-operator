@@ -34,7 +34,3 @@ output "type" {
   value       = local.type
   depends_on  = [resource.gitops_module.setup_gitops]
 }
-
-output "bin_dir" {
-  value = local.bin_dir
-}
