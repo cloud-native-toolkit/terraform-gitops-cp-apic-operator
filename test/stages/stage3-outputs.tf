@@ -12,9 +12,3 @@ resource local_file write_outputs {
     type        = module.apic.type
   })
 }
-
-resource local_file write_bin_dir {
-  filename = ".bin_dir"
-
-  content = module.apic.bin_dir
-}
